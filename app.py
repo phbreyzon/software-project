@@ -38,7 +38,7 @@ def main():
                 st.subheader("Song Recommendations:")
                 for song_id, song_info in final_recommendations.items():
                     st.write(f"- **{song_info['Name']}** by *{song_info['Artists']}*")
-                    webbrowser.open('https://music.youtube.com/search?q=**{song_info['Name']}**+*{song_info['Artists']}*')
+                    webbrowser.open('https://music.youtube.com/search?q=*{song_info['Name']}*+*{song_info['Artists']}*')
             else:
                 st.warning("No recommendations found.")
             
