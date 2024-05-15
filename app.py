@@ -1,3 +1,4 @@
+import webbrowser
 import streamlit as st
 from recommendation import recommend_songs_by_cluster, DEFAULT_FEATURE_COLS
 
@@ -37,8 +38,17 @@ def main():
             if final_recommendations:
                 st.subheader("Song Recommendations:")
                 for song_id, song_info in final_recommendations.items():
-                    st.write(f"- **{song_info['Name']}** by *{song_info['Artists']}*")
-                    webbrowser.open('https://music.youtube.com/search?q=*{song_info['Name']}*+*{song_info['Artists']}*')
+                    chars = [',', '.','#','(',')','?','!']
+                    
+                    song_name = song_info['Name'].translate({ord(k): None for k in chars})
+                    song_artist = song_info['Artists'].translate({ord(k): None for k in chars})
+
+                    url ="https://music.youtube.com/search?q="+song_name.replace(" ","+")+"+" +song_artist.replace(" ","+")+""
+                    print(url)
+
+                    st.write(f"- [**{song_info['Name']}** by *{song_info['Artists']}*]({url})")
+                    
+                    
             else:
                 st.warning("No recommendations found.")
             
