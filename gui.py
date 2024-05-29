@@ -1,4 +1,5 @@
 import customtkinter
+from CTkListbox import *
 
 # Main class initiation stuff
 class App(customtkinter.CTk): 
@@ -7,22 +8,31 @@ class App(customtkinter.CTk):
 
         # Layout of the main app
         self.title("Music recommender")
-        self.geometry("1920x1080")
+        self.geometry("860x520")
         self.grid_columnconfigure(0, weight=1)
+        self.scrollable_checkbox_frame = ScrollableList(master=self, width=300, height=200, corner_radius=0)
+        self.scrollable_checkbox_frame.grid(row=0, column=0, sticky="nsew", padx=(10,20), pady=(10, 0))
+
+
+
 
 
 
 
 # Definition of the recommendation list
-class ScrollableList(customtkinter.CTkFrame):
-    def __init__(self, master, values):
-        super().__init__(master)
+class ScrollableList(customtkinter.CTkScrollableFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        # add widgets onto the frame...
+        self.label = customtkinter.CTkLabel(self)
+        self.label.configure(text="new text")
+        self.label.grid(row=0, column=0, padx=20)
+
+        # list of items 
         
-        # creates the list in the frame for the parsed values 
-        for i, value in enumerate(self.values):
-            checkbox = customtkinter.CTkCheckBox(self, text=value)
-            checkbox.grid(row=i, column=0, padx=10, pady=(10, 0), sticky="w")
-            self.checkboxes.append(checkbox)
+
+
 
 
 
