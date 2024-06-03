@@ -20,8 +20,11 @@ def main():
     st.subheader("Enter exact song names (one per line):")
     liked_songs_input = st.text_area("Enter song names:", height=100)
     
+
+    # the number of recommendations as an int
     n_recommendations = st.slider("Select the number of recommendations:", min_value=1, max_value=20, value=5, step=1)
     
+    # the features as a list[str]
     feature_cols = st.multiselect("Select Features", DEFAULT_FEATURE_COLS, default=DEFAULT_FEATURE_COLS)
     
     if st.button("Recommend"):

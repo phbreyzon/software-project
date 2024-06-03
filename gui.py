@@ -24,13 +24,10 @@ class App(customtkinter.CTk):
 
 # Definition of the recommendation list
 class ScrollableList(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, values,**kwargs):
         super().__init__(master, **kwargs)
 
-        # add widgets onto the frame...
-        self.label = customtkinter.CTkLabel(self)
-        self.label.configure(text="new text")
-        self.label.grid(row=0, column=0, padx=20)
+        self.values = values
 
 
 
