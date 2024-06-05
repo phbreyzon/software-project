@@ -1,9 +1,6 @@
 from recommendation import recommend_songs_by_cluster, DEFAULT_FEATURE_COLS
 
 
-
-
-
 def list_of_recommendations(recommended_song_string, number_of_recommendations):
     
     # Declaration of used variables
@@ -14,7 +11,7 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
 
     liked_song_names = [song.strip() for song in liked_songs_input.split("\n") if song.strip()]
     
-    dictionary_to_return = [[2]]       
+    dictionary_to_return = []       
     
     if len(liked_song_names) == 0:
         print("warning: song is less than 1")
@@ -28,17 +25,19 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
             chars = [',', '.','#','(',')','?','!']
             
             
-            # TODO: values(artist name, link) need to be appended into a dictionary or a similar data structure
+        
                 
             song_name = song_info[1]['Name'].translate({ord(k): None for k in chars})
             song_artist = song_info[1]['Artists'].translate({ord(k): None for k in chars})
 
             url ="https://music.youtube.com/search?q="+song_name.replace(" ","+")+"+" +song_artist.replace(" ","+")+""
-            dictionary_to_return[i][0] = f"{song_info[1]['Name']} by {song_info[1]['Artists']}"
-            dictionary_to_return[i][1] = url
+            dictionary_to_return.append([f"{song_info[1]['Name']} by {song_info[1]['Artists']}",url]) 
             i+1
-            print(url)
-
+            print(dictionary_to_return[i][1])
+            print(dictionary_to_return[i][0])
+            
+            
+            
+    return dictionary_to_return
          
          
-dictionary = list_of_recommendations("Thunder",5)
