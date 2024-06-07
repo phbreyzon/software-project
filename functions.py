@@ -22,17 +22,18 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
 
         i = 0     
         for song_info in final_recommendations.items():
+            
+            # cleaning url from unwanted characters 
             chars = [',', '.','#','(',')','?','!']
             
-            
-        
-                
             song_name = song_info[1]['Name'].translate({ord(k): None for k in chars})
             song_artist = song_info[1]['Artists'].translate({ord(k): None for k in chars})
 
             url ="https://music.youtube.com/search?q="+song_name.replace(" ","+")+"+" +song_artist.replace(" ","+")+""
             dictionary_to_return.append([f"{song_info[1]['Name']} by {song_info[1]['Artists']}",url]) 
             i+1
+            
+            # c
             print(dictionary_to_return[i][1])
             print(dictionary_to_return[i][0])
             

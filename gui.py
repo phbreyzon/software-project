@@ -1,5 +1,4 @@
 import customtkinter
-from CTkListbox import *
 import webbrowser
 from functions import list_of_recommendations
 
@@ -17,20 +16,35 @@ class App(customtkinter.CTk):
         self.title("Music recommender")
         self.geometry("860x520")
         self.grid_columnconfigure(0, weight=1)
-        self.scrollable_checkbox_frame = Recommendations_list(master=self, width=300, height=200, corner_radius=10, values=["value1","value2","value3"])
+        self.scrollable_label_frame = Recommendations_list(master=self,title="recommendations", values=[""],url=[""])
+                
+        self.frame_for_button_and_entry = customtkinter.CTkFrame(master=self, width=300, height=200, corner_radius=10,)
+        self.frame_for_button_and_entry.grid(row=1, column=0, sticky="nsew", padx=30, pady=(30, 10))
         
         
-        self.scrollable_checkbox_frame.grid(row=0, column=0, sticky="nsew", padx=30, pady=(30, 10))
-        self.entry = customtkinter.CTkEntry(master=self.scrollable_checkbox_frame, placeholder_text="Enter recommendation")
+        self.entry = customtkinter.CTkEntry(master=self.frame_for_button_and_entry, placeholder_text="Enter recommendation")
         self.entry.grid(row=0, column=0, padx=20, pady=20)
         
-        
-        
-        button = customtkinter.CTkButton(master=self.scrollable_checkbox_frame, text="recommend",command=lambda : list_of_recommendations(self.entry.cget("state"),5))
-        button.grid(row=1, column=1, padx=20, pady=20)
     
-
         
+        self.button = customtkinter.CTkButton(master=self.frame_for_button_and_entry, text="recommend",command=lambda : button_action(self,self.scrollable_label_frame))
+        self.button.grid(row=1, column=1, padx=20, pady=20)
+        
+        
+        
+        def button_action(self, frame): 
+            frame.destroy()
+            
+            
+            array_2d= list_of_recommendations(self.entry.cget("state"),5)
+             
+            array_1d = [subarray[0] for subarray in array_2d]
+            
+            array_url= [subarray[1] for subarray in array_2d]
+
+            frame.__init__(master=self, values=array_1d,title="recommend",url=array_url) 
+            frame.grid(row=0, column=0, sticky="nsew", padx=30, pady=(30, 10))
+            
         
         
 
@@ -46,25 +60,20 @@ class App(customtkinter.CTk):
 
 # Definition of the recommendation list
 class Recommendations_list(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, values,**kwargs):
-        super().__init__(master, **kwargs)
-
-        self.values = values
-
-
-
-
+    def __init__(self, master, title, values,url):
+        super().__init__(master, label_text=title)
+        self.name_of_artists = values
         
+        for i,value in enumerate(self.name_of_artists):
+            label = customtkinter.CTkButton(master=self,text=value, command= callback(url[i]))
+            label.grid(row=i, column=0, padx=10, pady=(10, 0), sticky="w")
+            
+        
+    
 
 
-# Functions required to refresh the recommendation list
-def show_tab(self, frame):
-        for frm in self.btn_to_frame.values():
-            frm.grid_remove()
-        frame.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
-def hide_tab(self, frame):
-    frame.grid_remove()
+
 
 # Functionality to open links
 def callback(url):
