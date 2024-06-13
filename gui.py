@@ -38,7 +38,7 @@ class App(customtkinter.CTk):
             
             frame.destroy()
             
-            array_2d= list_of_recommendations(self.entry.cget("state"),10)
+            array_2d= list_of_recommendations(self.entry.get(),10)
             array_1d = [subarray[0] for subarray in array_2d]
             array_url= [subarray[1] for subarray in array_2d]
 

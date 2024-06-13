@@ -13,7 +13,7 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
     
     dictionary_to_return = []       
     
-    if len(liked_song_names) == 0 or liked_song_names[0]=='normal':
+    if len(liked_song_names) == 0:
         print("warning: song is less than 1")
     elif len(feature_cols) < 4:
         print("Please select at least 4 features.")
