@@ -11,7 +11,7 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
 
     liked_song_names = [song.strip() for song in liked_songs_input.split("\n") if song.strip()]
     
-    dictionary_to_return = []       
+    final_dictionary = []       
     
     if len(liked_song_names) == 0:
         print("warning: song is less than 1")
@@ -20,7 +20,6 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
     else:
         final_recommendations, songs_not_in_db = recommend_songs_by_cluster(liked_song_names, n_recommendations, feature_cols)        
 
-        i = 0     
         for song_info in final_recommendations.items():
             
             # cleaning url from unwanted characters 
@@ -28,14 +27,10 @@ def list_of_recommendations(recommended_song_string, number_of_recommendations):
             
             song_name = song_info[1]['Name'].translate({ord(k): None for k in chars})
             song_artist = song_info[1]['Artists'].translate({ord(k): None for k in chars})
-
             url ="https://music.youtube.com/search?q="+song_name.replace(" ","+")+"+" +song_artist.replace(" ","+")+""
-            dictionary_to_return.append([f"{song_info[1]['Name']} by {song_info[1]['Artists']}",url]) 
-            i+1
             
-            
-            
-            
-    return dictionary_to_return
+            final_dictionary.append([f"{song_info[1]['Name']} by {song_info[1]['Artists']}",url]) 
+
+    return final_dictionary
          
          
