@@ -9,10 +9,15 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         
+        # custom fonts 
+        my_font = customtkinter.CTkFont(family="Roboto",size=14,weight="normal")
+        
+        
         
         # experimenting with custom colour
         self.foreground_colour = "#181D23"
-        self.button_colour ="#1C2833 "
+        self.button_colour ="#1C2833"
+        
         
         
         # Layout of the main app
@@ -32,7 +37,7 @@ class App(customtkinter.CTk):
         
         
         # Button for recommendations
-        self.button = customtkinter.CTkButton(master=self.frame_for_button_and_entry, text="recommend", hover=True,command=lambda : button_action(self,self.scrollable_label_frame))
+        self.button = customtkinter.CTkButton(master=self.frame_for_button_and_entry, text="recommend", font=my_font,hover=True,command=lambda : button_action(self,self.scrollable_label_frame))
         self.button.grid(row=1, column=0, padx=65, pady=20, sticky="we")
         
         
@@ -59,6 +64,14 @@ class App(customtkinter.CTk):
         # Frame for the description
         self.description_frame = customtkinter.CTkFrame(master=self, height=50,corner_radius=10)
         self.description_frame.grid(row=2, column=0, padx=15, sticky="nswe", pady=(8,15))
+        self.description_frame.grid_columnconfigure(0,weight=1)
+        
+        self.label = customtkinter.CTkLabel(master=self.description_frame, text="Enter the sond you want to get recommendations for in the text field")
+        self.label.grid(row=0, column=0, padx=25, sticky="we", pady=(8,15))
+
+
+
+        
         
         
 # Definition of the recommendation list
@@ -70,8 +83,8 @@ class Recommendations_list(customtkinter.CTkScrollableFrame):
         
         for i,value in enumerate(self.name_of_artists):
 
-            label = customtkinter.CTkButton(master=self,text=value,command=lambda url_text = url[i]: callback(url_text), anchor="w", fg_color="#515A5A")
-            label.grid(row=i, column=0, padx=20,pady=(10, 0), sticky="ew")
+            button = customtkinter.CTkButton(master=self,text=value,command=lambda url_text = url[i]: callback(url_text), anchor="w", fg_color="#515A5A")
+            button.grid(row=i, column=0, padx=20,pady=(10, 0), sticky="ew")
             
         
     
