@@ -29,7 +29,7 @@ class App(customtkinter.CTk):
         self.primary_frame.grid_columnconfigure(0,weight=1)
         
         ## The entry where you enter your songs
-        self.entry = customtkinter.CTkEntry(master=self.primary_frame, placeholder_text="Enter recommendation")
+        self.entry = customtkinter.CTkEntry(master=self.primary_frame, placeholder_text="Enter song name")
         self.entry.grid(row=0, column=0, pady=(20,10), sticky="we", padx=65)
         
         ## Button for recommendations
