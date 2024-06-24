@@ -63,7 +63,6 @@ class App(customtkinter.CTk):
 
 
 
-
         # Button action when pressed
         def button_action(self, frame): 
             field_value = self.entry.get()
@@ -98,9 +97,7 @@ class Recommendations_list(customtkinter.CTkScrollableFrame):
         for i,value in enumerate(self.name_of_artists):
 
             button = customtkinter.CTkButton(master=self,text=value,command=lambda url_text = url[i]: callback(url_text), anchor="w")
-            button.grid(row=i, column=0, padx=20,pady=(10, 0), sticky="ew")
-            
-
+            button.grid(row=i, column=0, padx=20,pady=(10, 0), sticky="ew")            
 
 
 # Opens the link given by the recommendation system
