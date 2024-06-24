@@ -1,4 +1,9 @@
+#main application
 pandas
 scikit-learn
 argparse
 streamlit
+customtkinter 
+
+#gui 
+CTkListbox
