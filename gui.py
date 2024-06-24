@@ -66,7 +66,7 @@ class App(customtkinter.CTk):
         # Button action when pressed
         def button_action(self, frame): 
             field_value = self.entry.get()
-            number_of_recommendations = int(self.slider.get()) 
+            number_of_recommendations = round(self.slider.get())
 
             ## when entry is empty
             if len(field_value) == 0:
