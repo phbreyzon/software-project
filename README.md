@@ -5,6 +5,9 @@
 ![Song Recommender Screenshot](/images/main.png)
 
 ## Installation
+
+You can donwload the [Appimage](https://github.com/phbreyzon/software-project/releases/download/v.1.0/MusicRecommender_v1.0.appimage) if you're on Linux
+
 1. Clone the repository:
    
 ```bash
@@ -43,7 +46,6 @@ python cli.py -l "Shape of You" "Believer" "Havana" -n 10
 ```bash
 python gui.py
 ```
-
 
 ## Credit 
 
