@@ -6,7 +6,7 @@
 
 ## Installation
 
-You can donwload the [Appimage](https://github.com/phbreyzon/software-project/releases/download/v.1.0/MusicRecommender_v1.0.appimage) if you're on Linux
+Alternatively you can donwload the [Appimage](https://github.com/phbreyzon/software-project/releases/download/v.1.0/MusicRecommender_v1.0.appimage) if you're on Linux
 
 1. Clone the repository:
    
